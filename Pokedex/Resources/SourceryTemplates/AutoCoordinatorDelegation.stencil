@@ -1,0 +1,9 @@
+import Foundation
+
+// MARK: AutoCoordinatorDelegation
+
+{% for coordinator in types.based.AutoCoordinatorDelegation %}
+protocol {{coordinator.name}}Delegate: class {
+    func {{coordinator.name | lowerFirstWord}}DidFinish(_ coordinator: {{coordinator.name}})
+}
+{% endfor %}

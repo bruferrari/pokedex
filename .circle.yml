@@ -1,0 +1,13 @@
+dependencies:
+  pre:
+    - gem install fastlane
+
+machine:
+  xcode:
+    version: "8.0"
+
+deployment:
+  beta:
+    branch: master
+    commands:
+      - fastlane beta

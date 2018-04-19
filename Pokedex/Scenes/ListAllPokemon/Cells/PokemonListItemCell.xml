@@ -1,0 +1,4 @@
+<PokemonListItemCell reuseIdentifier="PokemonListItem">
+    <UIImageView contentMode="scaleAspectFit" outlet="pokemonImage" width="50" height="50" />
+    <UILabel text="{pokemon.name}" left="70" center.y="parent.center.y" textColor="black" font="{theme.font.footnote}" />
+</PokemonListItemCell>

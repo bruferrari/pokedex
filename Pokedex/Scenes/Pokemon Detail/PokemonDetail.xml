@@ -1,0 +1,3 @@
+<UIView backgroundColor="white">
+    <UIButton title="Fechar" left="10" top="safeAreaInsets.top + 10" outlet="closeButton" type="system"/>
+</UIView>

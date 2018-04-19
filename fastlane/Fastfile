@@ -1,0 +1,67 @@
+load './config.rb'
+
+fastlane_version '2.59.0'
+default_platform :ios
+
+platform :ios do
+
+  ######## DEVICE ##########
+
+  desc "Add new device to Member Center"
+	lane :add_device do
+    device_name = prompt(text: "Device name: ")
+    device_udid = prompt(text: "Device UDID: ")
+    register_devices(devices: {device_name => device_udid})
+
+    refresh_profiles
+	end
+
+  # Helper lane to refresh all provisioning profiles with new devices added
+  private_lane :refresh_profiles do
+    match(type: "development", force_for_new_devices: true)
+  end
+
+  ######## UTIL ##########
+
+  # Create Pull Request from the current branch
+  desc "Create a pull request from the current branch"
+  lane :pr do |options|
+    ok = system("which hub > /dev/null 2>&1")
+    if ok == false
+      raise "Please install https://github.com/github/hub".yellow
+    end
+
+    ensure_git_status_clean
+    branch = git_branch
+    if branch == "master"
+      raise "You can't open a Pull Request from this branch".yellow
+    else
+      UI.success "it's ok, you're on branch :#{branch}".green
+      sh "git push origin #{branch}"
+    end
+
+    pr_title = prompt(text: 'Type pull request title: ')
+    sh "hub issue"
+    desc = prompt(text: 'Do you want add a description? It\'s always better :).', boolean:true)
+    prompt_text = "Type pull request description (Fixing any issues? Just write: fixed #issueNumber.): "
+    pr_description = desc ? prompt(text: prompt_text) : ""
+    sh "touch pr_file"
+    write = open('pr_file', 'w')
+    write.write(pr_title)
+    write.write("\n")
+    write.write(pr_description)
+    write.close
+
+    base = $config[:default_branch] if defined? $config[:default_branch] 
+    base = options[:base] if options[:base]
+    if base 
+      pr_link = sh "hub pull-request -F pr_file -b #{base}"
+    else 
+      pr_link = sh "hub pull-request -F pr_file"
+    end
+
+    sh "rm pr_file"
+    clipboard(value: pr_link)  
+  end
+
+end

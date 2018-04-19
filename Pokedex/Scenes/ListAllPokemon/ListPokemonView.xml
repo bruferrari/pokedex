@@ -1,0 +1,8 @@
+<UIView>
+    <UITableView style="plain" outlet="tableView" rowHeight="44" top="parent.top"
+                 width="100%" height="100%" contentInsetAdjustmentBehavior="never"
+                 contentInset.top="safeAreaInsets.top" contentInset.bottom="safeAreaInsets.bottom"
+                 scrollIndicatorInsets.top="safeAreaInsets.top" scrollIndicatorInsets.bottom="safeAreaInsets.bottom" />
+    <UIActivityIndicatorView top="safeAreaInsets.top + 8" center.x="parent.center.x" outlet="activityIndicator"
+        activityIndicatorViewStyle="gray" hidesWhenStopped="true" />
+</UIView>

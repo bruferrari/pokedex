@@ -1,0 +1,22 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.    
+  - Pods 
+  - Carthage
+  - Domain/Resources/Generated/Sourcery/AutoEquatable.generated.swift
+  - GraphQlPlatform/Generated/GraphQlApi.generated.swift
+  - Pokedex/Resources/Generated/R/R.generated.swift
+  - Pokedex/Resources/Generated/Sourcery/AutoEquatable.generated.swift
+  - Pokedex/Resources/Generated/Sourcery/AutoMockable.generated.swift
+  - Pokedex/Resources/Generated/Sourcery/AutoCodable.generated.swift
+  - Tests
+
+identifier_name:
+  excluded:
+    - id
+    - rx
+
+large_tuple:
+  warning: 4
+  error: 5
+
+line_length:
+  warning: 120
