@@ -9,19 +9,19 @@ import Kingfisher
 class PokemonsAdapter: TableBaseAdapter<Pokemon> {
     private let bag = DisposeBag()
 
-    override func attach(tableView: UITableView?) {
-        super.attach(tableView: tableView)
+    override func attach(collectionView: UICollectionView?) {
+        super.attach(collectionView: collectionView)
 
-        tableView?.registerLayout(named: R.file.pokemonListItemCellXml.fullName,
+        collectionView?.registerLayout(named: R.file.pokemonListItemCellXml.fullName,
                 forCellReuseIdentifier: "PokemonListItem")
     }
 
     override func update(items: [Pokemon]) {
-        guard let tableView = tableView else { return }
+        guard let collectionView = collectionView else { return }
 
-        bag << Observable.just(items)
-            .bind(to: tableView.rx.items) { (tableView: UITableView, row: Int, element: Pokemon) -> UITableViewCell in
-                let node = tableView.dequeueReusableCellNode(withIdentifier: "PokemonListItem",
+        Observable.just(items).bind(to: collectionView.rx.items)
+        {(collectionView: UICollectionView, row: Int, element: Pokemon) -> UICollectionViewCell in
+                let node = collectionView.dequeueReusableCellNode(withIdentifier: "PokemonListItem",
                         for: IndexPath(row: row, section: 0))
 
                 node.setState(["pokemon": element])
@@ -29,18 +29,19 @@ class PokemonsAdapter: TableBaseAdapter<Pokemon> {
                 //swiftlint:disable:next force_cast
                 let cell = node.view as! PokemonListItemCell
 
-                cell.pokemonImage.kf.setImage(with: URL(string: element.image))
-                
+                cell.image.kf.setImage(with: URL(string: element.image),
+                                       placeholder: nil)
+
                 return cell
-            }
+            }.disposed(by: bag)
     }
 
 }
 
 extension Reactive where Base: PokemonsAdapter {
     var itemSelected: Observable<Pokemon> {
-        guard let tableView = base.tableView else { return Observable.never() }
-        return tableView.rx.modelSelected(Pokemon.self)
+        guard let collectionView = base.collectionView else { return Observable.never() }
+        return collectionView.rx.modelSelected(Pokemon.self)
             .asObservable()
     }
 

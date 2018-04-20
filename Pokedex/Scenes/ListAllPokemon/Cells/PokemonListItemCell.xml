@@ -1,4 +1,30 @@
-<PokemonListItemCell reuseIdentifier="PokemonListItem">
-    <UIImageView contentMode="scaleAspectFit" outlet="pokemonImage" width="50" height="50" />
-    <UILabel text="{pokemon.name}" left="70" center.y="parent.center.y" textColor="black" font="{theme.font.footnote}" />
+<PokemonListItemCell reuseIdentifier="PokemonListItem"
+                     layer.cornerRadius="width/2"
+                     layer.borderWidth="3"
+                     layer.borderColor="{rgb (227,227,227)}"
+                     backgroundColor="white">
+
+    <UIView
+        clipsToBounds="true"
+        backgroundColor="clear"
+        layer.maskToBounds="true"
+        height="100%"
+        width="100%">
+
+        <UIImageView
+            contentMode="scaleAspectFit"
+            outlet="image"
+            width="60%"
+            height="60%"
+            center.x="58"
+            center.y="55"
+            backgroundColor="clear"/>
+
+        <UILabel width="100%"
+            text="{pokemon.name}"
+            textColor="{rgb (60,89,165)}"
+            textAlignment="center"
+            font="{theme.font.body}"
+            top="parent.height + 5" />
+    </UIView>
 </PokemonListItemCell>

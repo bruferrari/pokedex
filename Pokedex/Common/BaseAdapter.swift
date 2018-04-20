@@ -11,30 +11,40 @@ open class BaseAdapter<T>: NSObject {
     }
 }
 
-open class TableBaseAdapter<T>: BaseAdapter<T>, UITableViewDelegate, UITableViewDataSource {
-    private(set) weak var tableView: UITableView?
+open class TableBaseAdapter<T>: BaseAdapter<T>,
+                                UICollectionViewDelegate,
+                                UICollectionViewDataSource {
+
+    private(set) weak var collectionView: UICollectionView?
 
     override var isLoading: Bool {
         didSet {
-            tableView?.isUserInteractionEnabled = !isLoading
-            tableView?.reloadData()
+            collectionView?.isUserInteractionEnabled = !isLoading
+            collectionView?.reloadData()
         }
     }
 
     override func update(items: [T]) {
         super.update(items: items)
-        self.tableView?.reloadData()
+        self.collectionView?.reloadData()
     }
 
-    open func attach(tableView: UITableView?) {
-        self.tableView = tableView
+    open func attach(collectionView: UICollectionView?) {
+        self.collectionView = collectionView
     }
 
-    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        fatalError("tableView(tableView:section:) has not been implemented")
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        return isLoading ? collectionView.estimatedNumberOfRows : items.count
     }
 
-    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        fatalError("tableView(tableView:indexPath:) has not been implemented")
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        fatalError("collectionView(collectionView:indexPath:) has not been implemented")
+    }
+}
+
+extension UICollectionView {
+    var estimatedNumberOfRows: Int {
+        guard let flowlayout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
+        return Int(ceil(frame.height/flowlayout.itemSize.height))
     }
 }
