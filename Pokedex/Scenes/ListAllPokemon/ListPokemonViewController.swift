@@ -15,6 +15,29 @@ final class ListPokemonViewController: BaseViewController<ListPokemonViewModel>,
     @objc var collectionView: UICollectionView!
     @objc var activityIndicator: UIActivityIndicatorView!
 
+    static var layoutConstants: [String: Any] {
+        var constants = Font.layoutConstants
+        constants ["string.listAllPokemon.title"] = R.string.listAllPokemon.listAllPokemonTitle()
+
+        return constants
+    }
+
+    convenience init(layoutName: String, viewModel: ListPokemonViewModel) {
+        self.init(viewModel: viewModel)
+
+        loadLayout(named: R.file.listPokemonViewXml.fullName,
+                   state: [:],
+                   constants: ListPokemonViewController.layoutConstants)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    required init(viewModel: ListPokemonViewModel) {
+        super.init(viewModel: viewModel)
+    }
+
     override func rebuildView() {
         adapter.attach(collectionView: collectionView)
 
@@ -52,16 +75,4 @@ final class ListPokemonViewController: BaseViewController<ListPokemonViewModel>,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
             return sectionInsets.left
     }
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//    }
-//
-//    private func generateGradient() -> CAGradientLayer {
-//        let gradientLayer = CAGradientLayer()
-//        gradientLayer.frame = self.view.bounds
-//        gradientLayer.colors = [UIColor.red.cgColor, UIColor.yellow.cgColor]
-//
-//        return gradientLayer
-//    }
 }

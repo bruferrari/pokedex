@@ -5,9 +5,8 @@
                      backgroundColor="white">
 
     <UIView
-        clipsToBounds="true"
+        clipsToBounds="false"
         backgroundColor="clear"
-        layer.maskToBounds="true"
         height="100%"
         width="100%">
 
@@ -16,8 +15,8 @@
             outlet="image"
             width="60%"
             height="60%"
-            center.x="58"
-            center.y="55"
+            center.x="parent.center.x"
+            center.y="parent.center.y"
             backgroundColor="clear"/>
 
         <UILabel width="100%"

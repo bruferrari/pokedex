@@ -26,7 +26,7 @@ final class ListPokemonCoordinator: CoordinatorType, AutoCoordinatorDelegation {
 
         let navigationController = UINavigationController(rootViewController: viewController)
 
-        window.rootViewController = navigationController
+        window.rootViewController = viewController
     }
 
     func route(to path: CoordinatorPath) {
