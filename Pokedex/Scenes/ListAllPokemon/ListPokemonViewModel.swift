@@ -36,9 +36,9 @@ struct ListPokemonViewModel: RxViewModel {
 
     func bind() {
         bag << useCase.pokemons().track(activity: activityTracker).bind(to: pokemonSubject)
-        bag << selectPokemonSubject
-            .subscribe(onNext: { _ in
-                self.coordinator?.route(to: ListPokemonCoordinator.Path.showPokemon)
-            })
+        selectPokemonSubject
+            .subscribe(onNext: { (pokemon) in
+                self.coordinator?.route(to: ListPokemonCoordinator.Path.showPokemon(pokemon))
+            }).disposed(by: bag)
     }
 }

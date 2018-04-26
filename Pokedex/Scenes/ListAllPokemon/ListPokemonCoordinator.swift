@@ -1,10 +1,11 @@
 import UIKit
 import GraphQlPlatform
 import RxSwift
+import Domain
 
 final class ListPokemonCoordinator: CoordinatorType, AutoCoordinatorDelegation {
     enum Path: CoordinatorPath {
-        case showPokemon
+        case showPokemon(Pokemon)
     }
 
     var window: UIWindow!
@@ -32,10 +33,12 @@ final class ListPokemonCoordinator: CoordinatorType, AutoCoordinatorDelegation {
     func route(to path: CoordinatorPath) {
         guard let path = path as? Path else { return }
         switch path {
-        case .showPokemon:
+        case .showPokemon(let pokemon):
             let coordinator = PokemonDetailCoordinator(window: window)
             coordinator.delegate = self
-            setupAndInit(coordinator: coordinator)
+//            setupAndInit(coordinator: coordinator)
+            coordinator.add(child: coordinator)
+            coordinator.start(pokemon: pokemon)
         }
     }
 

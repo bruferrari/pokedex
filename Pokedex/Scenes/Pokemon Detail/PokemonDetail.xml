@@ -1,3 +1,35 @@
-<UIView backgroundColor="white">
-    <UIButton title="Fechar" left="10" top="safeAreaInsets.top + 10" outlet="closeButton" type="system"/>
+<UIView>
+    <UIButton
+        title="Fechar"
+        left="10"
+        top="safeAreaInsets.top + 10"
+        outlet="closeButton"
+        type="system"/>
+
+    <UIView
+        clipsToBounds="false"
+        width="50%"
+        height="23%"
+        layer.cornerRadius="width/2"
+        layer.borderWidth="3"
+        layer.borderColor="{rgb (227,227,227)}"
+        center.x="parent.center.x"
+        top="previous.bottom"
+        backgroundColor="white">
+
+        <UIImageView
+            outlet="pokemonImage"
+            contentMode="scaleAspectFit"
+            backgroundColor="clear"
+            center.x="parent.center.x"
+            center.y="parent.center.y"
+            width="70%"
+            height="70%"/>
+    </UIView>
+
+    <UILabel
+        text="{state.pokemon.name}"
+        textColor="{rgb (60,89,165)}"
+        left="16"
+        top="previous.bottom"/>
 </UIView>

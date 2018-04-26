@@ -1,24 +1,32 @@
 import Foundation
 import RxSwift
+import RxCocoa
+import Domain
 
 struct PokemonDetailViewModel: RxViewModel {
     struct Input {
         let close: AnyObserver<Void>
     }
-    struct Output { }
+    struct Output {
+        let viewState: Driver<PokemonDetailViewState>
+    }
 
     let input: Input
     let output: Output
 
     private weak var coordinator: PokemonDetailCoordinator?
     private let closeSubject = PublishSubject<Void>()
+    private let nameSubject = PublishSubject<String>()
     private let bag = DisposeBag()
 
-    init(coordinator: PokemonDetailCoordinator) {
+    private let pokemon: Pokemon
+
+    init(coordinator: PokemonDetailCoordinator, pokemon: Pokemon) {
         self.coordinator = coordinator
+        self.pokemon = pokemon
 
         input = Input(close: closeSubject.asObserver())
-        output = Output()
+        output = Output(viewState: Driver.just(PokemonDetailViewState(pokemon: pokemon)))
 
         bind()
     }

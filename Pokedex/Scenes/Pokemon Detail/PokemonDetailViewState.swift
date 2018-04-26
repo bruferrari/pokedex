@@ -1,0 +1,11 @@
+import Domain
+
+struct PokemonDetailViewState {
+    let pokemon: Pokemon
+
+    static var empty: PokemonDetailViewState {
+        return PokemonDetailViewState(
+            pokemon: Pokemon(id: "", number: "", name: "", image: "")
+        )
+    }
+}

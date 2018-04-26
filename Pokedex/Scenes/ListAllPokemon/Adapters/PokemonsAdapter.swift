@@ -19,8 +19,8 @@ class PokemonsAdapter: TableBaseAdapter<Pokemon> {
     override func update(items: [Pokemon]) {
         guard let collectionView = collectionView else { return }
 
-        Observable.just(items).bind(to: collectionView.rx.items)
-        {(collectionView: UICollectionView, row: Int, element: Pokemon) -> UICollectionViewCell in
+        bag << Observable.just(items).bind(to: collectionView.rx.items) {
+            (collectionView: UICollectionView, row: Int, element: Pokemon) -> UICollectionViewCell in
                 let node = collectionView.dequeueReusableCellNode(withIdentifier: "PokemonListItem",
                         for: IndexPath(row: row, section: 0))
 
@@ -33,7 +33,7 @@ class PokemonsAdapter: TableBaseAdapter<Pokemon> {
                                        placeholder: nil)
 
                 return cell
-            }.disposed(by: bag)
+            }
     }
 
 }
