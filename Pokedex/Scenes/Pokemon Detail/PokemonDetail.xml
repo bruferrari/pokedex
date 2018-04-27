@@ -1,6 +1,6 @@
 <UIView>
     <UIButton
-        title="Fechar"
+        title="{string.pokemonDetail.btnLabel}"
         left="10"
         top="safeAreaInsets.top + 10"
         outlet="closeButton"
@@ -14,7 +14,7 @@
         layer.borderWidth="3"
         layer.borderColor="{rgb (227,227,227)}"
         center.x="parent.center.x"
-        top="previous.bottom"
+        top="previous.bottom + 30"
         backgroundColor="white">
 
         <UIImageView
@@ -30,6 +30,46 @@
     <UILabel
         text="{state.pokemon.name}"
         textColor="{rgb (60,89,165)}"
-        left="16"
-        top="previous.bottom"/>
+        center.x="parent.center.x"
+        font="{theme.font.detailTitle}"
+        top="previous.bottom + 20"/>
+
+    <UILabel
+        id="classification"
+        text="{state.pokemon.classification}"
+        textColor="{rgb (74,74,74)}"
+        center.x="parent.center.x"
+        font="{theme.font.body} 12"
+        top="previous.bottom + 2"/>
+
+    <UIView
+        left="80"
+        right="80"
+        top="#classification.bottom + 23">
+
+        <UILabel
+        id="types"
+        text="{string.pokemonDetail.type}"
+        textColor="{rgb (125,125,125)}"
+        font="{theme.font.body} 14"/>
+
+        <UILabel
+        text="{string.pokemonDetail.height}"
+        textColor="{rgb (125,125,125)}"
+        font="{theme.font.body} 14"
+        left="previous.left + 80"/>
+
+        <UILabel
+        text="{string.pokemonDetail.weight}"
+        textColor="{rgb (125,125,125)}"
+        font="{theme.font.body} 14"
+        left="previous.left + 80"/>
+
+        <UILabel
+        text="{state.pokemon.types[0]}"
+        textColor="{rgb (20,106,138)}"
+        font="{theme.font.body} 18"
+        center.x="#types.center.x"
+        top="#types.bottom + 10"/>
+    </UIView>
 </UIView>

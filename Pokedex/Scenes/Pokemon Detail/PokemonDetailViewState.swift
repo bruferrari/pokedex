@@ -5,7 +5,12 @@ struct PokemonDetailViewState {
 
     static var empty: PokemonDetailViewState {
         return PokemonDetailViewState(
-            pokemon: Pokemon(id: "", number: "", name: "", image: "")
+            pokemon: Pokemon(id: "",
+                             number: "",
+                             name: "",
+                             image: "",
+                             classification: "",
+                             types: [""])
         )
     }
 }

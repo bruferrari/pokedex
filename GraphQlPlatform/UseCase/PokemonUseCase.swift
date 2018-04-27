@@ -22,7 +22,13 @@ final class PokemonUseCase: Domain.PokemonUseCase {
 
 extension AllPokemonQuery.Data.Pokemon {
     func pokemon() -> Domain.Pokemon? {
-        guard let name = name, let number = number, let image = image else { return nil }
-        return Pokemon(id: id as String, number: number, name: name, image: image)
+        guard let name = name,
+            let number = number,
+            let image = image,
+            let classification = classification,
+            let types = types
+            else { return nil }
+        //swiftlint:disable:next force_cast
+        return Pokemon(id: id as String, number: number, name: name, image: image, classification: classification, types: types as! [String])
     }
 }

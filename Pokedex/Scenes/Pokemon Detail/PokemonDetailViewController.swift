@@ -13,6 +13,10 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
         constants["string.pokemonDetail.evolutions"] = R.string.pokemonDetail.pokemonDetailEvolutions()
         constants["string.pokemonDetail.resistant"] = R.string.pokemonDetail.pokemonDetailResistant()
         constants["string.pokemonDetail.weakness"] = R.string.pokemonDetail.pokemonDetailWeakness()
+        constants["string.pokemonDetail.btnLabel"] = R.string.pokemonDetail.pokemonDetailBtnLabel()
+        constants["string.pokemonDetail.type"] = R.string.pokemonDetail.pokemonDetailType()
+        constants["string.pokemonDetail.height"] = R.string.pokemonDetail.pokemonDetailHeight()
+        constants["string.pokemonDetail.weight"] = R.string.pokemonDetail.pokemonDetailWeight()
         return constants
     }
 

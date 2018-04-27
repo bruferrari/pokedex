@@ -4,5 +4,7 @@ query AllPokemon {
     number
     name
     image
+    classification
+    types
   }
 }

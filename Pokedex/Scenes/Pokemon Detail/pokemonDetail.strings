@@ -1,3 +1,7 @@
 "pokemonDetail.evolutions"="Evolutions";
 "pokemonDetail.resistant"="Resistant";
 "pokemonDetail.weakness"="Weakness";
+"pokemonDetail.btnLabel"="Fechar";
+"pokemonDetail.type"="Type";
+"pokemonDetail.height"="Height";
+"pokemonDetail.weight"="Weight";
