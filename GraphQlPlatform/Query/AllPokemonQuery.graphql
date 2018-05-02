@@ -6,5 +6,13 @@ query AllPokemon {
     image
     classification
     types
+    weight {
+        minimum
+        maximum
+    }
+    height {
+        minimum
+        maximum
+    }
   }
 }

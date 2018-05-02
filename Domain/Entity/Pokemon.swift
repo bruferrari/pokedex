@@ -5,18 +5,24 @@ public struct Pokemon: AutoEquatable {
     public let image: String
     public let classification: String
     public let types: [String]
+    public let height: PokemonDimension
+    public let weight: PokemonDimension
 
     public init(id: String,
                 number: String,
                 name: String,
                 image: String,
                 classification: String,
-                types: [String]) {
+                types: [String],
+                height: PokemonDimension,
+                weight: PokemonDimension) {
         self.id = id
         self.number = number
         self.name = name
         self.image = image
         self.classification = classification.uppercased()
         self.types = types
+        self.height = height
+        self.weight = weight
     }
 }

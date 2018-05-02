@@ -10,7 +10,9 @@ struct PokemonDetailViewState {
                              name: "",
                              image: "",
                              classification: "",
-                             types: [""])
+                             types: [""],
+                             height: PokemonDimension(minimum: "", maximum: ""),
+                             weight: PokemonDimension(minimum: "", maximum: ""))
         )
     }
 }

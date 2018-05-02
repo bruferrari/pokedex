@@ -54,12 +54,14 @@
         font="{theme.font.body} 14"/>
 
         <UILabel
+        id="height"
         text="{string.pokemonDetail.height}"
         textColor="{rgb (125,125,125)}"
         font="{theme.font.body} 14"
         left="previous.left + 80"/>
 
         <UILabel
+        id="weight"
         text="{string.pokemonDetail.weight}"
         textColor="{rgb (125,125,125)}"
         font="{theme.font.body} 14"
@@ -71,5 +73,19 @@
         font="{theme.font.body} 18"
         center.x="#types.center.x"
         top="#types.bottom + 10"/>
+
+        <UILabel
+        text="{state.pokemon.height.maximum}"
+        textColor="{rgb (20,106,138)}"
+        font="{theme.font.body} 18"
+        center.x="#height.center.x"
+        top="#height.bottom + 10"/>
+
+        <UILabel
+        text="{state.pokemon.weight.maximum}"
+        textColor="{rgb (20,106,138)}"
+        font="{theme.font.body} 18"
+        center.x="#weight.center.x"
+        top="#weight.bottom + 10"/>
     </UIView>
 </UIView>
