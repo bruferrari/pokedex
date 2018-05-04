@@ -4,9 +4,21 @@ import RxSwift
 import Layout
 import RxCocoa
 
-final class PokemonDetailViewController: BaseViewController<PokemonDetailViewModel> {
+final class PokemonDetailViewController: BaseViewController<PokemonDetailViewModel>,
+                                         UICollectionViewDelegateFlowLayout {
+    fileprivate let itemsPerRow: CGFloat = 1
+
+    fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 50.0, bottom: 40, right: 50.0)
+
     @objc var closeButton: UIButton!
     @objc var pokemonImage: UIImageView!
+
+    private let fastAttacksAdapter = AttacksAdapter()
+    private let specialAttacksAdapter = AttacksAdapter()
+
+    @objc var fastAttacksCollectionView: UICollectionView!
+    @objc var specialAttacksCollectionView: UICollectionView!
+    @objc var activityIndicator: UIActivityIndicatorView!
 
     override var constants: LayoutConstants {
         var constants = super.constants
@@ -17,6 +29,9 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
         constants["string.pokemonDetail.type"] = R.string.pokemonDetail.pokemonDetailType()
         constants["string.pokemonDetail.height"] = R.string.pokemonDetail.pokemonDetailHeight()
         constants["string.pokemonDetail.weight"] = R.string.pokemonDetail.pokemonDetailWeight()
+        constants["string.pokemonDetail.attacks"] = R.string.pokemonDetail.pokemonDetailAttacks()
+        constants["string.pokemonDetail.fast"] = R.string.pokemonDetail.pokemonDetailFast()
+        constants["string.pokemonDetail.special"] = R.string.pokemonDetail.pokemonDetailSpecial()
         return constants
     }
 
@@ -36,11 +51,44 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
             .drive(onNext: { [unowned self] state in
                 self.pokemonImage.kf.setImage(with: URL(string: state.pokemon.image))
             })
+
+        fastAttacksAdapter.attach(collectionView: fastAttacksCollectionView)
+        specialAttacksAdapter.attach(collectionView: specialAttacksCollectionView)
+
+        bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
+            self.fastAttacksAdapter.update(items: pokemon.fastAttacks)
+        })
+
+        bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
+            self.specialAttacksAdapter.update(items: pokemon.specialAttacks)
+        })
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setGradientBackground(firstColor: UIColor(red: 0.92, green: 0.96, blue: 0.71, alpha: 1.0),
                                    secondColor: UIColor(red: 0.46, green: 0.79, blue: 0.81, alpha: 1.0))
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: 0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.bottom
     }
 }

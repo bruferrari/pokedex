@@ -5,3 +5,6 @@
 "pokemonDetail.type"="Type";
 "pokemonDetail.height"="Height";
 "pokemonDetail.weight"="Weight";
+"pokemonDetail.attacks"="ATTACKS";
+"pokemonDetail.fast"="Fast";
+"pokemonDetail.special"="Special";

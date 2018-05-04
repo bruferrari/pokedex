@@ -9,6 +9,7 @@ struct PokemonDetailViewModel: RxViewModel {
     }
     struct Output {
         let viewState: Driver<PokemonDetailViewState>
+        let pokemon: Driver<Pokemon>
     }
 
     let input: Input
@@ -26,7 +27,8 @@ struct PokemonDetailViewModel: RxViewModel {
         self.pokemon = pokemon
 
         input = Input(close: closeSubject.asObserver())
-        output = Output(viewState: Driver.just(PokemonDetailViewState(pokemon: pokemon)))
+        output = Output(viewState: Driver.just(PokemonDetailViewState(pokemon: pokemon)),
+                        pokemon: Driver.just(pokemon))
 
         bind()
     }

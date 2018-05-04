@@ -14,5 +14,17 @@ query AllPokemon {
         minimum
         maximum
     }
+    attacks {
+        fast {
+            name
+            type
+            damage
+        }
+        special {
+            name
+            type
+            damage
+        }
+    }
   }
 }

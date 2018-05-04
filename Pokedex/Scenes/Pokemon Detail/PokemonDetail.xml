@@ -1,91 +1,137 @@
-<UIView>
-    <UIButton
-        title="{string.pokemonDetail.btnLabel}"
-        left="10"
-        top="safeAreaInsets.top + 10"
-        outlet="closeButton"
-        type="system"/>
+<UIScrollView
+    backgroundColor="clear"
+    top="parent.top"
+    bottom="parent.bottom">
+    <UIView>
+        <UIButton
+            title="{string.pokemonDetail.btnLabel}"
+            left="10"
+            top="safeAreaInsets.top + 10"
+            outlet="closeButton"
+            type="system"/>
 
-    <UIView
-        clipsToBounds="false"
-        width="50%"
-        height="23%"
-        layer.cornerRadius="width/2"
-        layer.borderWidth="3"
-        layer.borderColor="{rgb (227,227,227)}"
-        center.x="parent.center.x"
-        top="previous.bottom + 30"
-        backgroundColor="white">
-
-        <UIImageView
-            outlet="pokemonImage"
-            contentMode="scaleAspectFit"
-            backgroundColor="clear"
+        <UIView
+            clipsToBounds="false"
+            width="50%"
+            height="23%"
+            layer.cornerRadius="width/2"
+            layer.borderWidth="3"
+            layer.borderColor="{rgb (227,227,227)}"
             center.x="parent.center.x"
-            center.y="parent.center.y"
-            width="70%"
-            height="70%"/>
-    </UIView>
+            top="previous.bottom + 30"
+            backgroundColor="white">
 
-    <UILabel
-        text="{state.pokemon.name}"
-        textColor="{rgb (60,89,165)}"
-        center.x="parent.center.x"
-        font="{theme.font.detailTitle}"
-        top="previous.bottom + 20"/>
+            <UIImageView
+                outlet="pokemonImage"
+                contentMode="scaleAspectFit"
+                backgroundColor="clear"
+                center.x="parent.center.x"
+                center.y="parent.center.y"
+                width="70%"
+                height="70%"/>
+        </UIView>
 
-    <UILabel
-        id="classification"
-        text="{state.pokemon.classification}"
-        textColor="{rgb (74,74,74)}"
-        center.x="parent.center.x"
+        <UILabel
+            text="{state.pokemon.name}"
+            textColor="{rgb (60,89,165)}"
+            center.x="parent.center.x"
+            font="{theme.font.detailTitle}"
+            top="previous.bottom + 20"/>
+
+        <UILabel
+            text="{state.pokemon.classification}"
+            textColor="{rgb (74,74,74)}"
+            center.x="parent.center.x"
+            font="{theme.font.body} 12"
+            top="previous.bottom + 2"/>
+
+        <UIView
+            left="80"
+            top="previous.bottom + 23"
+            height="40">
+
+            <UILabel
+            id="types"
+            text="{string.pokemonDetail.type}"
+            textColor="{rgb (125,125,125)}"
+            font="{theme.font.body} 14"/>
+
+            <UILabel
+            id="height"
+            text="{string.pokemonDetail.height}"
+            textColor="{rgb (125,125,125)}"
+            font="{theme.font.body} 14"
+            left="previous.left + 80"/>
+
+            <UILabel
+            id="weight"
+            text="{string.pokemonDetail.weight}"
+            textColor="{rgb (125,125,125)}"
+            font="{theme.font.body} 14"
+            left="previous.left + 80"/>
+
+            <UILabel
+            text="{state.pokemon.types[0]}"
+            textColor="{rgb (20,106,138)}"
+            font="{theme.font.body} 18"
+            center.x="#types.center.x"
+            top="#types.bottom + 10"/>
+
+            <UILabel
+            text="{state.pokemon.height.minimum}"
+            textColor="{rgb (20,106,138)}"
+            font="{theme.font.body} 18"
+            center.x="#height.center.x"
+            top="#height.bottom + 10"/>
+
+            <UILabel
+            text="{state.pokemon.weight.minimum}"
+            textColor="{rgb (20,106,138)}"
+            font="{theme.font.body} 18"
+            center.x="#weight.center.x"
+            top="#weight.bottom + 10"/>
+        </UIView>
+
+        <UILabel
+        text="{string.pokemonDetail.attacks}"
+        textColor="{rgb (20,106,138)}"
         font="{theme.font.body} 12"
-        top="previous.bottom + 2"/>
+        top="previous.bottom + 40"
+        center.x="parent.center.x"/>
 
-    <UIView
-        left="80"
-        right="80"
-        top="#classification.bottom + 23">
+        <UIView
+            top="previous.bottom + 10"
+            height="auto">
+            <UILabel
+            text="{string.pokemonDetail.fast}"
+            textColor="{rgb (74,74,74)}"
+            font="{theme.font.body} 12"
+            left="50"/>
 
-        <UILabel
-        id="types"
-        text="{string.pokemonDetail.type}"
-        textColor="{rgb (125,125,125)}"
-        font="{theme.font.body} 14"/>
+            <UICollectionView
+            outlet="fastAttacksCollectionView"
+            width="100%"
+            height="auto"
+            top="previous.bottom + 15"
+            backgroundColor="clear"/>
+        </UIView>
 
-        <UILabel
-        id="height"
-        text="{string.pokemonDetail.height}"
-        textColor="{rgb (125,125,125)}"
-        font="{theme.font.body} 14"
-        left="previous.left + 80"/>
+        <UIView
+            top="previous.bottom + 40"
+            height="auto">
+            <UILabel
+            text="{string.pokemonDetail.special}"
+            textColor="{rgb (74,74,74)}"
+            font="{theme.font.body} 12"
+            left="50"/>
 
-        <UILabel
-        id="weight"
-        text="{string.pokemonDetail.weight}"
-        textColor="{rgb (125,125,125)}"
-        font="{theme.font.body} 14"
-        left="previous.left + 80"/>
+            <UICollectionView
+            outlet="specialAttacksCollectionView"
+            width="100%"
+            height="auto"
+            top="previous.bottom + 15"
+            backgroundColor="clear"/>
+        </UIView>
 
-        <UILabel
-        text="{state.pokemon.types[0]}"
-        textColor="{rgb (20,106,138)}"
-        font="{theme.font.body} 18"
-        center.x="#types.center.x"
-        top="#types.bottom + 10"/>
-
-        <UILabel
-        text="{state.pokemon.height.maximum}"
-        textColor="{rgb (20,106,138)}"
-        font="{theme.font.body} 18"
-        center.x="#height.center.x"
-        top="#height.bottom + 10"/>
-
-        <UILabel
-        text="{state.pokemon.weight.maximum}"
-        textColor="{rgb (20,106,138)}"
-        font="{theme.font.body} 18"
-        center.x="#weight.center.x"
-        top="#weight.bottom + 10"/>
     </UIView>
-</UIView>
+</UIScrollView>
