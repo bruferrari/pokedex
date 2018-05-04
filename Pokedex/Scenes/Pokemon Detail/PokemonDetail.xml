@@ -1,19 +1,20 @@
 <UIScrollView
     backgroundColor="clear"
-    top="parent.top"
-    bottom="parent.bottom">
-    <UIView>
+    contentInsetAdjustmentBehavior="never"
+    contentInset="safeAreaInsets"
+    scrollIndicatorInsets.top="safeAreaInsets.top"
+    scrollIndicatorInsets.bottom="safeAreaInsets.bottom">
         <UIButton
             title="{string.pokemonDetail.btnLabel}"
             left="10"
-            top="safeAreaInsets.top + 10"
+            top="parent.top"
             outlet="closeButton"
             type="system"/>
 
         <UIView
             clipsToBounds="false"
             width="50%"
-            height="23%"
+            height="25%"
             layer.cornerRadius="width/2"
             layer.borderWidth="3"
             layer.borderColor="{rgb (227,227,227)}"
@@ -132,6 +133,4 @@
             top="previous.bottom + 15"
             backgroundColor="clear"/>
         </UIView>
-
-    </UIView>
 </UIScrollView>
