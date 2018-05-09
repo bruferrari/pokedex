@@ -26,5 +26,11 @@ query AllPokemon {
             damage
         }
     }
+    evolutions {
+        name
+        image
+    }
+    weaknesses
+    resistant
   }
 }

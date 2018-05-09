@@ -33,6 +33,12 @@ extension AllPokemonQuery.Data.Pokemon {
         let fastAttacks = attacks?.fast?.compactMap { $0 }.map { $0.attack() }.compactMap { $0 } ?? []
         let specialAttacks = attacks?.special?.compactMap { $0 }.map { $0.attack() }.compactMap { $0 } ?? []
 
+        let pokemonEvolutions = evolutions?.compactMap { $0 }.map { $0.evolution() }.compactMap { $0 } ?? []
+
+        let pokemonWeaknesess = weaknesses?.compactMap { $0 }.joined(separator: ", ") ?? ""
+
+        let pokemonResistant = resistant?.compactMap { $0 }.joined(separator: ", ") ?? ""
+
         return Pokemon(id: id as String,
                        number: number,
                        name: name,
@@ -43,7 +49,17 @@ extension AllPokemonQuery.Data.Pokemon {
                        height: PokemonDimension(minimum: height.minimum ?? "0", maximum: height.maximum ?? "0"),
                        weight: PokemonDimension(minimum: weight.minimum ?? "0", maximum: weight.maximum ?? "0"),
                        fastAttacks: fastAttacks,
-                       specialAttacks: specialAttacks)
+                       specialAttacks: specialAttacks,
+                       evolutions: pokemonEvolutions,
+                       weaknesses: pokemonWeaknesess,
+                       resistant: pokemonResistant)
+    }
+}
+
+extension AllPokemonQuery.Data.Pokemon.Evolution {
+    func evolution() -> Domain.Evolutions? {
+        guard let name = name, let image = image else { return nil }
+        return Evolutions(name: name, image: image)
     }
 }
 
@@ -60,7 +76,3 @@ extension AllPokemonQuery.Data.Pokemon.Attack.Special {
         return Attack(name: name, type: type, damage: damage)
     }
 }
-
-
-
-

@@ -14,6 +14,9 @@ struct PokemonDetailViewState {
                              height: PokemonDimension(minimum: "", maximum: ""),
                              weight: PokemonDimension(minimum: "", maximum: ""),
                              fastAttacks: [],
-                             specialAttacks: [])
+                             specialAttacks: [],
+                             evolutions: [],
+                             weaknesses: "",
+                             resistant: "")
         )}
 }

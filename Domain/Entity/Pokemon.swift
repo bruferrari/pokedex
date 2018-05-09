@@ -9,6 +9,9 @@ public struct Pokemon: AutoEquatable {
     public let weight: PokemonDimension
     public let fastAttacks: [Attack]
     public let specialAttacks: [Attack]
+    public let evolutions: [Evolutions]
+    public let weaknesses: String
+    public let resistant: String
 
     public init(id: String,
                 number: String,
@@ -19,7 +22,10 @@ public struct Pokemon: AutoEquatable {
                 height: PokemonDimension,
                 weight: PokemonDimension,
                 fastAttacks: [Attack],
-                specialAttacks: [Attack]) {
+                specialAttacks: [Attack],
+                evolutions: [Evolutions],
+                weaknesses: String,
+                resistant: String) {
         self.id = id
         self.number = number
         self.name = name
@@ -30,5 +36,8 @@ public struct Pokemon: AutoEquatable {
         self.weight = weight
         self.fastAttacks = fastAttacks
         self.specialAttacks = specialAttacks
+        self.evolutions = evolutions
+        self.weaknesses = weaknesses
+        self.resistant = resistant
     }
 }

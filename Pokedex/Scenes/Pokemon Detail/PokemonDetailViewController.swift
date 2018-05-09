@@ -15,16 +15,18 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
 
     private let fastAttacksAdapter = AttacksAdapter()
     private let specialAttacksAdapter = AttacksAdapter()
+    private let evolutionsAdapter = EvolutionsAdapter()
 
     @objc var fastAttacksCollectionView: UICollectionView!
     @objc var specialAttacksCollectionView: UICollectionView!
+    @objc var evolutionsCollectionView: UICollectionView!
     @objc var activityIndicator: UIActivityIndicatorView!
 
     override var constants: LayoutConstants {
         var constants = super.constants
         constants["string.pokemonDetail.evolutions"] = R.string.pokemonDetail.pokemonDetailEvolutions()
         constants["string.pokemonDetail.resistant"] = R.string.pokemonDetail.pokemonDetailResistant()
-        constants["string.pokemonDetail.weakness"] = R.string.pokemonDetail.pokemonDetailWeakness()
+        constants["string.pokemonDetail.weaknesess"] = R.string.pokemonDetail.pokemonDetailWeaknesess()
         constants["string.pokemonDetail.btnLabel"] = R.string.pokemonDetail.pokemonDetailBtnLabel()
         constants["string.pokemonDetail.type"] = R.string.pokemonDetail.pokemonDetailType()
         constants["string.pokemonDetail.height"] = R.string.pokemonDetail.pokemonDetailHeight()
@@ -32,6 +34,7 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
         constants["string.pokemonDetail.attacks"] = R.string.pokemonDetail.pokemonDetailAttacks()
         constants["string.pokemonDetail.fast"] = R.string.pokemonDetail.pokemonDetailFast()
         constants["string.pokemonDetail.special"] = R.string.pokemonDetail.pokemonDetailSpecial()
+
         return constants
     }
 
@@ -54,6 +57,7 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
 
         fastAttacksAdapter.attach(collectionView: fastAttacksCollectionView)
         specialAttacksAdapter.attach(collectionView: specialAttacksCollectionView)
+        evolutionsAdapter.attach(collectionView: evolutionsCollectionView)
 
         bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
             self.fastAttacksAdapter.update(items: pokemon.fastAttacks)
@@ -62,6 +66,12 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
         bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
             self.specialAttacksAdapter.update(items: pokemon.specialAttacks)
         })
+
+        // TODO resolve evolutions problem
+//        bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
+//            self.evolutionsAdapter.update(items: pokemon.evolutions)
+//        })
+
     }
 
     override func viewDidLoad() {

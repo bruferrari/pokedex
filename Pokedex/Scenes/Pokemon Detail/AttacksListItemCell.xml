@@ -1,12 +1,12 @@
 <UICollectionViewCell>
     <UILabel
     text="{attack.name}"
-    textColor="{rgb (60,89,165)}"
+    textColor="{rgb (145,145,145)}"
     font="{theme.font.body} 16"/>
 
     <UILabel
     text="{attack.damage}"
-    textColor="{rgb (60,89,165)}"
+    textColor="{rgb (208,2,27)}"
     font="{theme.font.body}"
     right="parent.right - 10"/>
 </UICollectionViewCell>
