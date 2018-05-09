@@ -18,6 +18,7 @@ final class ListPokemonViewController: BaseViewController<ListPokemonViewModel>,
     static var layoutConstants: [String: Any] {
         var constants = Font.layoutConstants
         constants ["string.listAllPokemon.title"] = R.string.listAllPokemon.listAllPokemonTitle()
+        constants ["string.listAllPokemon.search.hint"] = R.string.listAllPokemon.listAllPokemonSearchHint()
 
         return constants
     }

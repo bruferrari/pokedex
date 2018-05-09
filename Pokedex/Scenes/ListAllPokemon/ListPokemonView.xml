@@ -1,19 +1,25 @@
 <UIView top="safeAreaInsets.top" >
+    <UILabel
+    text="{string.listAllPokemon.title}"
+    font="{theme.font.mainTitle}"
+    textColor="{rgb (60,89,165)}"
+    left="16"
+    top="40"/>
+
+    <UISearchBar
+    top="previous.bottom + 10"
+    placeholder="{string.listAllPokemon.search.hint}"
+    barTintColor="clear"
+    backgroundColor="clear"/>
+
     <UIScrollView
         backgroundColor="clear"
-        top="parent.top"
+        top="previous.bottom"
         bottom="parent.bottom">
-        <UILabel
-            text="{string.listAllPokemon.title}"
-            font="{theme.font.title1}"
-            textColor="{rgb (60,89,165)}"
-            left="16"
-            top="80"/>
 
         <UICollectionView
             outlet="collectionView"
             width="100%"
-            top="120"
             contentInsetAdjustmentBehavior="never"
             contentInset.top="safeAreaInsets.top"
             contentInset.bottom="safeAreaInsets.bottom"

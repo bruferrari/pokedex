@@ -1,0 +1,37 @@
+query SinglePokemon($name: String) {
+    pokemon(name: $name) {
+        id
+        number
+        name
+        image
+        classification
+        types
+        weight {
+            minimum
+            maximum
+        }
+        height {
+            minimum
+            maximum
+        }
+        attacks {
+            fast {
+                name
+                type
+                damage
+            }
+            special {
+                name
+                type
+                damage
+            }
+        }
+        evolutions {
+            name
+            image
+        }
+        weaknesses
+        resistant
+    }
+}
+

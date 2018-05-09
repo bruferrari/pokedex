@@ -1,19 +1,6 @@
 <UIView
     backgroundColor="clear">
-    <UIButton
-    title="{string.pokemonDetail.btnLabel}"
-    left="10"
-    top="safeAreaInsets.top"
-    outlet="closeButton"
-    type="system"/>
-
-    <UIScrollView
-        backgroundColor="clear"
-        contentInsetAdjustmentBehavior="never"
-        contentInset="safeAreaInsets"
-        scrollIndicatorInsets.top="safeAreaInsets.top"
-        scrollIndicatorInsets.bottom="safeAreaInsets.bottom">
-
+    <UIScrollView>
             <UIView
                 clipsToBounds="false"
                 width="50%"
@@ -232,13 +219,12 @@
             font="{theme.font.body} 14"
             top="previous.bottom + 20"
             center.x="parent.center.x"/>
-
-            <UIView
-            top="previous.bottom + 20"
-            backgroundColor="white"
-            height="2"
-            width="75%"
-            left="44"
-            right="44"/>
     </UIScrollView>
+
+    <UIButton
+    title="{string.pokemonDetail.btnLabel}"
+    left="10"
+    top="safeAreaInsets.top"
+    outlet="closeButton"
+    type="system"/>
 </UIView>
