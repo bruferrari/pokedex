@@ -9,8 +9,7 @@
     <UISearchBar
     top="previous.bottom + 10"
     placeholder="{string.listAllPokemon.search.hint}"
-    barTintColor="clear"
-    backgroundColor="clear"/>
+    searchBarStyle="minimal"/>
 
     <UIScrollView
         backgroundColor="clear"
