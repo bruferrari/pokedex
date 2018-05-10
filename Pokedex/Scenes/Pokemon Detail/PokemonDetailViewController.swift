@@ -68,9 +68,9 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
         })
 
         // TODO resolve evolutions problem
-//        bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
-//            self.evolutionsAdapter.update(items: pokemon.evolutions)
-//        })
+        bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
+            self.evolutionsAdapter.update(items: pokemon.evolutions)
+        })
 
     }
 

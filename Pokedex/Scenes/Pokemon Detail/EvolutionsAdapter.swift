@@ -25,12 +25,12 @@ class EvolutionsAdapter: TableBaseAdapter<Evolutions> {
 
             node.setState(["evolution": element])
 
+            if let imageView = node.childNode(withID: "imageView")?.view as? UIImageView {
+                imageView.kf.setImage(with: URL(string: element.image), placeholder: nil)
+            }
+
             //swiftlint:disable:next force_cast
-            let cell = node.view as! EvolutionListItemCell
-
-            cell.image.kf.setImage(with: URL(string: element.image), placeholder: nil)
-
-            return cell
+            return node.view as! UICollectionViewCell
         }
     }
 }

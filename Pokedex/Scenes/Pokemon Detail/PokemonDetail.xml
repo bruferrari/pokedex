@@ -4,7 +4,7 @@
             <UIView
                 clipsToBounds="false"
                 width="50%"
-                height="25%"
+                height="width"
                 layer.cornerRadius="width/2"
                 layer.borderWidth="3"
                 layer.borderColor="{rgb (227,227,227)}"
@@ -13,6 +13,7 @@
                 backgroundColor="white">
 
                 <UIImageView
+                id="mainImage"
                     outlet="pokemonImage"
                     contentMode="scaleAspectFit"
                     backgroundColor="clear"
@@ -59,8 +60,7 @@
             backgroundColor="white"
             height="50"
             width="1"
-            left="previous.right + 30"
-            right="44"/>
+            left="previous.right + 30"/>
 
             <UIStackView
                 alignment="center"
@@ -85,14 +85,15 @@
             backgroundColor="white"
             height="50"
             width="1"
-            right="previous.right + 30"/>
+            left="previous.right + 20"
+            />
 
             <UIStackView
                 alignment="center"
                 axis="vertical"
                 spacing="10"
                 top="previous.top"
-                left="previous.left + 20">
+                left="previous.right + 20">
 
                 <UILabel
                 text="{string.pokemonDetail.weight}"
@@ -111,7 +112,7 @@
             height="1"
             width="75%"
             left="44"
-            right="44"/>
+            />
 
             <UILabel
             text="{string.pokemonDetail.attacks}"
@@ -160,7 +161,7 @@
             height="1"
             width="75%"
             left="44"
-            right="44"/>
+            />
 
             <UILabel
             text="{string.pokemonDetail.evolutions}"
@@ -182,7 +183,7 @@
             height="1"
             width="75%"
             left="44"
-            right="44"/>
+            />
 
             <UILabel
             text="{string.pokemonDetail.resistant}"
@@ -204,7 +205,7 @@
             height="1"
             width="75%"
             left="44"
-            right="44"/>
+            />
 
             <UILabel
             text="{string.pokemonDetail.weaknesess}"

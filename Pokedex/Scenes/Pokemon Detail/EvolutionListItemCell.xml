@@ -1,9 +1,9 @@
-<EvolutionListItemCell
+<UICollectionViewCell
     reuseIdentifier="EvolutionListItem">
     
     <UIImageView
+    id="imageView"
     contentMode="scaleAspectFit"
-    outlet="evolutionImage"
     width="60%"
     height="60%"
     center.x="parent.center.x"
@@ -14,4 +14,4 @@
     text="{evolution.name}"
     textColor="{rgb (145,145,145)}"
     font="{theme.font.body} 12"/>
-</EvolutionListItemCell>
+</UICollectionViewCell>
