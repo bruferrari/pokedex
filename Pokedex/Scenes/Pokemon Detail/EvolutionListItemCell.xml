@@ -1,17 +1,29 @@
 <UICollectionViewCell
-    reuseIdentifier="EvolutionListItem">
-    
-    <UIImageView
-    id="imageView"
-    contentMode="scaleAspectFit"
-    width="60%"
-    height="60%"
-    center.x="parent.center.x"
-    center.y="parent.center.y"
-    backgroundColor="clear"/>
+    reuseIdentifier="EvolutionListItem"
+    layer.cornerRadius="width/2"
+    layer.borderWidth="3"
+    layer.borderColor="{rgb (227,227,227)}"
+    backgroundColor="white">
 
-    <UILabel
-    text="{evolution.name}"
-    textColor="{rgb (145,145,145)}"
-    font="{theme.font.body} 12"/>
+    <UIView
+        clipsToBounds="false"
+        backgroundColor="clear"
+        height="100%"
+        width="100%">
+
+        <UIImageView
+        id="imageView"
+        contentMode="scaleAspectFit"
+        center.x="parent.center.x"
+        center.y="parent.center.y"
+        width="60%"
+        backgroundColor="clear"/>
+
+        <UILabel
+        text="{evolution.name}"
+        textColor="{rgb (145,145,145)}"
+        font="{theme.font.body} 14"
+        top="parent.bottom + 10"
+        center.x="parent.center.x"/>
+    </UIView>
 </UICollectionViewCell>

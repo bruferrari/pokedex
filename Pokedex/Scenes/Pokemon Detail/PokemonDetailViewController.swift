@@ -4,12 +4,7 @@ import RxSwift
 import Layout
 import RxCocoa
 
-final class PokemonDetailViewController: BaseViewController<PokemonDetailViewModel>,
-                                         UICollectionViewDelegateFlowLayout {
-    fileprivate let itemsPerRow: CGFloat = 1
-
-    fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 50.0, bottom: 40, right: 50.0)
-
+final class PokemonDetailViewController: BaseViewController<PokemonDetailViewModel> {
     @objc var closeButton: UIButton!
     @objc var pokemonImage: UIImageView!
 
@@ -67,8 +62,11 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
             self.specialAttacksAdapter.update(items: pokemon.specialAttacks)
         })
 
-        // TODO resolve evolutions problem
         bag << viewModel.output.pokemon.drive(onNext: { [unowned self] pokemon in
+            if pokemon.evolutions == [] {
+                self.evolutionsCollectionView
+                    .setEmptyMessage(R.string.pokemonDetail.pokemonDetailNoAvailableEvolutions())
+            }
             self.evolutionsAdapter.update(items: pokemon.evolutions)
         })
 
@@ -79,26 +77,35 @@ final class PokemonDetailViewController: BaseViewController<PokemonDetailViewMod
         view.setGradientBackground(firstColor: UIColor(red: 0.92, green: 0.96, blue: 0.71, alpha: 1.0),
                                    secondColor: UIColor(red: 0.46, green: 0.79, blue: 0.81, alpha: 1.0))
     }
+}
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = collectionView.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
+extension UICollectionView {
 
-        return CGSize(width: widthPerItem, height: 0)
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                                 width: self.bounds.size.width,
+                                                 height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.textColor = UIColor(red: 145, green: 145, blue: 145)
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
+    func restore() {
+        self.backgroundView = nil
     }
+}
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.bottom
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        let newRed = CGFloat(red)/255
+        let newGreen = CGFloat(green)/255
+        let newBlue = CGFloat(blue)/255
+
+        self.init(red: newRed, green: newGreen, blue: newBlue, alpha: 1.0)
     }
 }

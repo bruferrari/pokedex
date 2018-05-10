@@ -1,6 +1,10 @@
 <UIView
     backgroundColor="clear">
-    <UIScrollView>
+    <UIScrollView
+        contentInsetAdjustmentBehavior="never"
+        contentInset="parent.safeAreaInsets"
+        scrollIndicatorInsets.top="parent.safeAreaInsets.top"
+        scrollIndicatorInsets.bottom="parent.safeAreaInsets.bottom">
             <UIView
                 clipsToBounds="false"
                 width="50%"
@@ -60,7 +64,7 @@
             backgroundColor="white"
             height="50"
             width="1"
-            left="previous.right + 30"/>
+            left="parent.left + 130"/>
 
             <UIStackView
                 alignment="center"
@@ -85,7 +89,7 @@
             backgroundColor="white"
             height="50"
             width="1"
-            left="previous.right + 20"
+            right="parent.right - 130"
             />
 
             <UIStackView
@@ -93,7 +97,7 @@
                 axis="vertical"
                 spacing="10"
                 top="previous.top"
-                left="previous.right + 20">
+                right="parent.right - 50">
 
                 <UILabel
                 text="{string.pokemonDetail.weight}"

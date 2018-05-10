@@ -5,14 +5,18 @@ import RxCocoa
 import RxSwift
 import Layout
 
-class AttacksAdapter: TableBaseAdapter<Attack> {
+class AttacksAdapter: TableBaseAdapter<Attack>, UICollectionViewDelegateFlowLayout {
     private let bag = DisposeBag()
+
+    fileprivate let itemsPerRow: CGFloat = 1
+    fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 50.0, bottom: 40, right: 50.0)
 
     override func attach(collectionView: UICollectionView?) {
         super.attach(collectionView: collectionView)
 
         collectionView?.registerLayout(named: R.file.attacksListItemCellXml.fullName,
                                        forCellReuseIdentifier: "AttacksListItem")
+        collectionView?.delegate = self
     }
 
     override func update(items: [Attack]) {
@@ -30,6 +34,28 @@ class AttacksAdapter: TableBaseAdapter<Attack> {
 
             return cell
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: 0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.bottom
     }
 }
 

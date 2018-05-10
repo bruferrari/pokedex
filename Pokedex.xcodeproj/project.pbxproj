@@ -35,7 +35,6 @@
 		2C0DD9C4209B8C000068FC2C /* AttacksListItemCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2C0DD9C3209B8C000068FC2C /* AttacksListItemCell.xml */; };
 		2C0DD9C6209CF50D0068FC2C /* Evolutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD9C5209CF50D0068FC2C /* Evolutions.swift */; };
 		2C0DD9C8209CFCB90068FC2C /* EvolutionsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD9C7209CFCB90068FC2C /* EvolutionsAdapter.swift */; };
-		2C0DD9CA209CFD380068FC2C /* EvolutionListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DD9C9209CFD380068FC2C /* EvolutionListItemCell.swift */; };
 		2C0DD9CC209CFD9A0068FC2C /* EvolutionListItemCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2C0DD9CB209CFD9A0068FC2C /* EvolutionListItemCell.xml */; };
 		2C0DD9CE20A3894D0068FC2C /* SinglePokemonQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 2C0DD9CD20A3894D0068FC2C /* SinglePokemonQuery.graphql */; };
 		2C332629208A607F00757BFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C332628208A607F00757BFC /* UIViewExtension.swift */; };
@@ -227,7 +226,6 @@
 		2C0DD9C3209B8C000068FC2C /* AttacksListItemCell.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AttacksListItemCell.xml; sourceTree = "<group>"; };
 		2C0DD9C5209CF50D0068FC2C /* Evolutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evolutions.swift; sourceTree = "<group>"; };
 		2C0DD9C7209CFCB90068FC2C /* EvolutionsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionsAdapter.swift; sourceTree = "<group>"; };
-		2C0DD9C9209CFD380068FC2C /* EvolutionListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionListItemCell.swift; sourceTree = "<group>"; };
 		2C0DD9CB209CFD9A0068FC2C /* EvolutionListItemCell.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = EvolutionListItemCell.xml; sourceTree = "<group>"; };
 		2C0DD9CD20A3894D0068FC2C /* SinglePokemonQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SinglePokemonQuery.graphql; sourceTree = "<group>"; };
 		2C332628208A607F00757BFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 				2C0DD9C1209B56890068FC2C /* AttacksAdapter.swift */,
 				2C0DD9C3209B8C000068FC2C /* AttacksListItemCell.xml */,
 				2C0DD9C7209CFCB90068FC2C /* EvolutionsAdapter.swift */,
-				2C0DD9C9209CFD380068FC2C /* EvolutionListItemCell.swift */,
 				2C0DD9CB209CFD9A0068FC2C /* EvolutionListItemCell.xml */,
 			);
 			path = "Pokemon Detail";
@@ -1440,7 +1437,6 @@
 				AD3F2D8A2066B5F500989DC1 /* R.generated.swift in Sources */,
 				AD7CEE622069676300635817 /* SourceryProtocols.swift in Sources */,
 				AD3F2D882066B5EF00989DC1 /* AutoCodable.generated.swift in Sources */,
-				2C0DD9CA209CFD380068FC2C /* EvolutionListItemCell.swift in Sources */,
 				FB476336418ACFEFF38A6305 /* main.swift in Sources */,
 				1223D621DAFEE541E8707A80 /* CoordinatorType.swift in Sources */,
 				2C7D86FE208829B00022AF81 /* PokemonListItemCell.swift in Sources */,

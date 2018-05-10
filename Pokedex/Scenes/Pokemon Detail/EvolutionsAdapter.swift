@@ -5,14 +5,18 @@ import RxCocoa
 import RxSwift
 import Layout
 
-class EvolutionsAdapter: TableBaseAdapter<Evolutions> {
+class EvolutionsAdapter: TableBaseAdapter<Evolutions>, UICollectionViewDelegateFlowLayout {
     private let bag = DisposeBag()
+
+    fileprivate let itemsPerRow: CGFloat = 2
+    fileprivate let sectionInsets = UIEdgeInsets(top: 0, left: 50, bottom: 30, right: 50)
 
     override func attach(collectionView: UICollectionView?) {
         super.attach(collectionView: collectionView)
 
         collectionView?.registerLayout(named: R.file.evolutionListItemCellXml.fullName,
                                        forCellReuseIdentifier: "EvolutionListItem")
+        collectionView?.delegate = self
     }
 
     override func update(items: [Evolutions]) {
@@ -29,9 +33,35 @@ class EvolutionsAdapter: TableBaseAdapter<Evolutions> {
                 imageView.kf.setImage(with: URL(string: element.image), placeholder: nil)
             }
 
+            if items == [] {
+                
+            }
+
             //swiftlint:disable:next force_cast
             return node.view as! UICollectionViewCell
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
     }
 }
 
