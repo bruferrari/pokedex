@@ -6,7 +6,13 @@ import RxSwift
 import Layout
 import Kingfisher
 
-class PokemonsAdapter: TableBaseAdapter<Pokemon> {
+class PokemonsAdapter: TableBaseAdapter<Pokemon>,
+                       UICollectionViewDelegateFlowLayout {
+
+    fileprivate let itemsPerRow: CGFloat = 2
+
+    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0)
+    
     private let bag = DisposeBag()
 
     override func attach(collectionView: UICollectionView?) {
@@ -14,6 +20,7 @@ class PokemonsAdapter: TableBaseAdapter<Pokemon> {
 
         collectionView?.registerLayout(named: R.file.pokemonListItemCellXml.fullName,
                 forCellReuseIdentifier: "PokemonListItem")
+        collectionView?.delegate = self
     }
 
     override func update(items: [Pokemon]) {
@@ -36,6 +43,27 @@ class PokemonsAdapter: TableBaseAdapter<Pokemon> {
             }
     }
 
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
 }
 
 extension Reactive where Base: PokemonsAdapter {

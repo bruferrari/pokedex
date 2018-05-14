@@ -1,4 +1,4 @@
-<UIView top="safeAreaInsets.top" >
+<UIView top="safeAreaInsets.top + 10" >
     <UILabel
     text="{string.listAllPokemon.title}"
     font="{theme.font.mainTitle}"
@@ -7,23 +7,21 @@
     top="10"/>
 
     <UISearchBar
+    outlet="searchBar"
     top="previous.bottom + 10"
     placeholder="{string.listAllPokemon.search.hint}"
     searchBarStyle="minimal"/>
 
-    <UIScrollView
-        backgroundColor="clear"
-        top="previous.bottom">
-
-        <UICollectionView
-            outlet="collectionView"
-            width="100%"
-            backgroundColor="clear"/>
-    </UIScrollView>
+    <UICollectionView
+        outlet="collectionView"
+        top="previous.bottom"
+        width="100%"
+        backgroundColor="clear"/>
 
     <UIActivityIndicatorView
         top="safeAreaInsets.top + 8"
         center.x="parent.center.x"
+        center.y="parent.center.y"
         outlet="activityIndicator"
         activityIndicatorViewStyle="gray"
         hidesWhenStopped="true" />

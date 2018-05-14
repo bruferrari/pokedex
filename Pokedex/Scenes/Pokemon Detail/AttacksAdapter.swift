@@ -22,8 +22,7 @@ class AttacksAdapter: TableBaseAdapter<Attack>, UICollectionViewDelegateFlowLayo
     override func update(items: [Attack]) {
         guard let collectionView = collectionView else { return }
 
-        bag << Observable.just(items).bind(to: collectionView.rx.items) {
-            (collectionView: UICollectionView, row: Int, element: Attack) -> UICollectionViewCell in
+        bag << Observable.just(items).bind(to: collectionView.rx.items) { (collectionView: UICollectionView, row: Int, element: Attack) -> UICollectionViewCell in
             let node = collectionView.dequeueReusableCellNode(withIdentifier: "AttacksListItem",
                                                               for: IndexPath(row: row, section: 0))
 

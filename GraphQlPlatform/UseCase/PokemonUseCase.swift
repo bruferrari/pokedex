@@ -43,7 +43,7 @@ extension AllPokemonQuery.Data.Pokemon {
                        number: number,
                        name: name,
                        image: image,
-                       classification: classification, 
+                       classification: classification,
                        //swiftlint:disable:next force_cast
                        types: types as! [String],
                        height: PokemonDimension(minimum: height.minimum ?? "0", maximum: height.maximum ?? "0"),
